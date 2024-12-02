@@ -1,0 +1,80 @@
+return{
+
+{
+    "catppuccin/nvim",
+    name="catppuccin",
+    priority=1000,
+    config=require("config.catppuccin").setup
+},
+{
+    "nvim-telescope/telescope.nvim",
+    dependencies={
+        "telescope-fzf-native.nvim",
+        "nvim-telescope/telescope-file-browser.nvim",
+        "nvim-lua/plenary.nvim"
+    },
+    config=require("config.telescope").setup
+},
+{
+    "nvim-telescope/telescope-fzf-native.nvim",
+    build="cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release"
+},
+{
+    "romgrk/barbar.nvim",
+    event="VeryLazy",
+    dependencies={
+        "lewis6991/gitsigns.nvim",
+        "nvim-tree/nvim-web-devicons"
+    },
+    init=function() vim.g.barbar_auto_setup=false end,
+    config=require("config.barbar").setup
+},
+{
+    "nvim-lualine/lualine.nvim",
+    event="VeryLazy",
+    dependencies={"nvim-tree/nvim-web-devicons"},
+    config=require("config.lualine").setup
+},
+{
+    "nvim-treesitter/nvim-treesitter",
+    lazy=false,
+    config=require("config.treesitter").setup
+},
+{
+    "neovim/nvim-lspconfig",
+    dependencies={
+        "williamboman/mason.nvim",
+        "hrsh7th/nvim-cmp"
+    },
+    config=require("config.lspconfig").setup
+},
+{
+    "williamboman/mason.nvim",
+    lazy=false,
+    dependencies={"williamboman/mason-lspconfig.nvim"},
+    config=require("config.mason").setup
+},
+{
+    "hrsh7th/nvim-cmp",
+    lazy=false,
+    dependencies={
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-path",
+        "hrsh7th/cmp-cmdline",
+        "L3MON4D3/LuaSnip",
+        "saadparwaiz1/cmp_luasnip"
+    },
+    config=require("config.nvim_cmp").setup
+},
+{
+    "folke/noice.nvim",
+    event="VeryLazy",
+    dependencies={
+        "MunifTanjim/nui.nvim",
+        "rcarriga/nvim-notify"
+    },
+    config=require("config.noice").setup
+}
+
+}
